@@ -137,13 +137,12 @@ const questions = [
   { question: "배송은 트럭 등을 이용해 거점에서 수화인에게 전달하는 (   )이다.", answer: "지선운송" }
 ];
 
-// 2. 상태 변수
 let currentIndex = 0;
 let score = 0;
 let currentQuestions = [];
 let incorrectQuestions = [];
 
-// 3. 모드 선택
+// 2. 모드 선택
 document.getElementById('order-mode').onclick = () => startQuiz('order');
 document.getElementById('random-mode').onclick = () => startQuiz('random');
 
@@ -172,9 +171,11 @@ function showQuestion() {
   document.getElementById('answer-input').value = '';
   document.getElementById('feedback').textContent = '';
   document.getElementById('next-btn').style.display = 'none';
+  document.getElementById('answer-input').focus();
 }
 
-document.getElementById('submit-btn').onclick = () => {
+// 답 제출 함수
+function submitAnswer() {
   const userAnswer = document.getElementById('answer-input').value.trim();
   const correctAnswer = currentQuestions[currentIndex].answer;
   if (userAnswer === correctAnswer) {
@@ -187,12 +188,35 @@ document.getElementById('submit-btn').onclick = () => {
     incorrectQuestions.push(currentQuestions[currentIndex]);
   }
   document.getElementById('next-btn').style.display = '';
+  document.getElementById('answer-input').focus();
+}
+
+// 제출 버튼 클릭 시
+document.getElementById('submit-btn').onclick = () => {
+  // 이미 피드백이 있으면(즉, 이미 제출했다면) 무시
+  if (document.getElementById('next-btn').style.display !== 'none') return;
+  submitAnswer();
 };
 
+// 다음 문제 버튼 클릭 시
 document.getElementById('next-btn').onclick = () => {
   currentIndex++;
   showQuestion();
 };
+
+// 입력창에서 엔터(PC)/이동(모바일) 누르면 제출 또는 다음 문제로 이동
+document.getElementById('answer-input').addEventListener('keydown', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    // 아직 제출 안 했으면 제출
+    if (document.getElementById('next-btn').style.display === 'none') {
+      submitAnswer();
+    } else {
+      // 이미 제출한 상태면 다음 문제로 이동
+      document.getElementById('next-btn').click();
+    }
+  }
+});
 
 function showResult() {
   document.querySelector('.quiz').style.display = 'none';
