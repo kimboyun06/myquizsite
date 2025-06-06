@@ -25,6 +25,21 @@
       <button id="retry-wrong-btn" style="display:none;">틀린 문제 다시 풀기</button>
       <button id="restart-btn">처음부터 다시 풀기</button>
     </div>
+    <!-- 관리자 영역 -->
+    <div class="admin-section" style="margin-top:20px;">
+      <button id="admin-btn">관리자</button>
+      <div id="admin-login" style="display:none; margin-top:10px;">
+        <input type="password" id="admin-password" placeholder="비밀번호 입력">
+        <button id="admin-login-btn">확인</button>
+        <span id="admin-login-fail" style="color:red; margin-left:10px;"></span>
+      </div>
+      <div id="admin-panel" style="display:none; margin-top:15px;">
+        <h3>문제/정답 수정</h3>
+        <div id="admin-questions"></div>
+        <button id="admin-save-btn" style="margin-top:10px;">저장</button>
+        <span id="admin-save-msg" style="margin-left:10px; color:green;"></span>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>

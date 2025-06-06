@@ -42,28 +42,28 @@ const questions = [
   { question: "(   )은 항공기로 화물을 운송코자 하는 고객을 위해 항공사를 대신해서 항공사의 이름으로 업무를 수행한다.", answer: "항공화물대리점업" },
   { question: "(   )란 비슷한 시기에 동일한 방향의 목적지로 운송되는 다수의 소규모 화물들을 집하해서 대형화한 후 중량단계의 낮은 요율을 적용받아 이익을 취하는 사업이다.", answer: "혼재업자" },
   { question: "(   )는 화물의 출발지와 목적지의 중간 지점에서 통과화물의 재발송 업무를 수행하는 기능을 의미한다.", answer: "중간운송주선업자" },
-  { question: "항공화물운송장(AWB)은 항공사와 화주 간에 체결한 일종의 (   )를 의미한다.", answer: "화물운송계약 증명서" },
+  { question: "항공화물운송장(   )은 항공사와 화주 간에 체결한 일종의 (   )를 의미한다.", answer: "AWB, 화물운송계약 증명서" },
   { question: "항공화물운송장의 법적 성질은 비유통성, 증거증권, (   ), 요식증권이다.", answer: "면책증권" },
   { question: "항공사가 포워더에게 발행하는 경우를 (   )이라고 한다.", answer: "마스터 AWB" },
   { question: "포워더 소유의 운송장은 (   )이라고 한다.", answer: "자가 운송장" },
   { question: "유닛로드 시스템은 화물을 일정한 표준의 중량 또는 용적으로 (   )시켜 일관해서 기계... 를 이용하여 하역, 수송, 보관하는 시스템이다.", answer: "단위화" },
   { question: "유닛로드 시스템의 방법으로 (   )와 (   )를 이용하는 방법이 있다.", answer: "파렛트, 컨테이너" },
-  { question: "유닛로드 시스템(한국산업표준의 정의)은 유닛로드를 도입함으로써 하역을 (   )하고 수송, 보관 등을 일관하여 합리화시키는 시스템이다.", answer: "기계화" },
+  { question: "유닛로드 시스템(     )은 유닛로드를 도입함으로써 하역을 (   )하고 수송, 보관 등을 일관하여 합리화시키는 시스템이다.", answer:"한국산업표준의 정의, 기계화" },
   { question: "유닛로드의 형태는 파렛트, 컨테이너, 밴드포장, (   )가 있다.", answer: "집합포장" },
   { question: "유닛로드 시스템의 3원칙은 기계화, 표준화, (   ) 원칙이 있다.", answer: "하역의 최소" },
   { question: "지게차의 개발로 파렛트로드 상태로 (   )한다.", answer: "파렛트화" },
-  { question: "해상 컨테이너의 사용은 미국 SEA LAND SERVICE(1956년)사에서 미국내 화물의 (   )에 이용한 것이 시초이다.", answer: "연안운송" },
+  { question: "해상 컨테이너의 사용은 미국 SEA LAND SERVICE(    )사에서 미국내 화물의 (   )에 이용한 것이 시초이다.", answer: "1956년, 연안운송" },
   { question: "파렛트에 적재한 상태로 화물을 환적하지 않고 출발지에서 도착지까지 운송, 보관, 하역하는 방법이 (   ) 파렛트화, 컨테이너에 의해 유닛하된 것이 컨테이너화이다.", answer: "일관" },
   { question: "파렛트 치수의 표준화는 파렛트 규격 통일 및 (   )가 선행되어야 한다.", answer: "표준화" },
-  { question: "파렛트 폴 시스템(PPS)는 (   )로 다수 화주대상 물류업체가 파렛트를 공동으로 이용하는 제도이다.", answer: "표준파렛트" },
+  { question: "파렛트 폴 시스템(   )는 (   )로 다수 화주대상 물류업체가 파렛트를 공동으로 이용하는 제도이다.", answer: "PPS, 표준파렛트" },
   { question: "선박의 톤수 중 (   )는 여객이나 화물을 적재할 수 있는 용적으로, 선박의 수익능력을 표시한다", answer: "순톤수" },
   { question: "해상운송 방식은 (   ), 용선계약이 있다.", answer: "개품운송" },
   { question: "용선계약은 만재화물 내지 대량화물인 경우에는 (   )에 적재한다.", answer: "부정기선" },
   { question: "항만시설 용어 중 (   )은 해안, 하안 등에 평행하게 축조된 선박의 접안을 위하여 해저로부터 수직으로 만들어진 벽이다.", answer: "안벽" },
   { question: "(   )은 선박이 접안 또는 조종을 돕기 위해 기둥이나 석조물로 이루어진 해상에 고립되어 있는 작은 물체이다.", answer: "돌핀" },
   { question: "(   )는 선박이 닻을 내리고 접안을 위해 기다리는 수역이다.", answer: "묘박지" },
-  { question: "선하증권(B/L)은 화주와 선박회사 간의 해상운송계약에 의하여 선박회사가 발행하는 (   )이다.", answer: "유가증권" },
-  { question: "선하증권(B/L)의 양도는 화물에 대한 (   )의 이전이다.", answer: "권리" },
+  { question: "선하증권(  )은 화주와 선박회사 간의 해상운송계약에 의하여 선박회사가 발행하는 (   )이다.", answer: "B/L, 유가증권" },
+  { question: "선하증권(  )의 양도는 화물에 대한 (   )의 이전이다.", answer: "B/L, 권리" },
   { question: "선하증권의 법적 성질은 요인중권, 대표증권, (   ) 등이 있다.", answer: "유통증권" },
   { question: "복합운송 유형 중 피기백 방식은 철도의 대차 위에 운송용 트레일러를 대량으로 적재하여 운송하는 (   )과 (   )의 (   )이다.", answer: "철도운송, 도로운송, 복합운송방식" },
   { question: "복합운송 유형 중 (   )은 도로운송수단과 해상운송수단을 혼합하여 운송하는 방식이다.", answer: "피시백 방식" },
@@ -136,7 +136,6 @@ const questions = [
   { question: "수송은 선박, 철도, 트럭 등을 이용한 거점 간의 (   )이다.", answer: "간선운송" },
   { question: "배송은 트럭 등을 이용해 거점에서 수화인에게 전달하는 (   )이다.", answer: "지선운송" }
 ];
-
 let currentIndex = 0;
 let score = 0;
 let currentQuestions = [];
@@ -193,7 +192,6 @@ function submitAnswer() {
 
 // 제출 버튼 클릭 시
 document.getElementById('submit-btn').onclick = () => {
-  // 이미 피드백이 있으면(즉, 이미 제출했다면) 무시
   if (document.getElementById('next-btn').style.display !== 'none') return;
   submitAnswer();
 };
@@ -208,11 +206,9 @@ document.getElementById('next-btn').onclick = () => {
 document.getElementById('answer-input').addEventListener('keydown', function(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
-    // 아직 제출 안 했으면 제출
     if (document.getElementById('next-btn').style.display === 'none') {
       submitAnswer();
     } else {
-      // 이미 제출한 상태면 다음 문제로 이동
       document.getElementById('next-btn').click();
     }
   }
@@ -245,4 +241,60 @@ document.getElementById('retry-wrong-btn').onclick = () => {
 document.getElementById('restart-btn').onclick = () => {
   document.querySelector('.mode-select').style.display = '';
   document.querySelector('.result').style.display = 'none';
+};
+
+// ====== 관리자 기능 ======
+const ADMIN_PASSWORD = "0007"; // 원하는 비밀번호로 변경
+
+// 관리자 버튼 클릭 시
+document.getElementById('admin-btn').onclick = () => {
+  document.getElementById('admin-login').style.display = '';
+  document.getElementById('admin-panel').style.display = 'none';
+  document.getElementById('admin-save-msg').textContent = '';
+  document.getElementById('admin-login-fail').textContent = '';
+};
+
+// 비밀번호 확인
+document.getElementById('admin-login-btn').onclick = () => {
+  const pw = document.getElementById('admin-password').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('admin-login').style.display = 'none';
+    showAdminPanel();
+  } else {
+    document.getElementById('admin-login-fail').textContent = '비밀번호가 틀렸습니다!';
+  }
+};
+
+// 관리자 패널 표시
+function showAdminPanel() {
+  document.getElementById('admin-panel').style.display = '';
+  // 문제/정답 수정 폼 생성
+  let html = '';
+  questions.forEach((q, idx) => {
+    html += `
+      <div style="margin-bottom:10px;">
+        <label>문제 ${idx + 1}:<br>
+          <textarea style="width:95%;height:40px;" id="admin-q-${idx}">${q.question}</textarea>
+        </label><br>
+        <label>정답:<br>
+          <input style="width:95%;" type="text" id="admin-a-${idx}" value="${q.answer}">
+        </label>
+      </div>
+    `;
+  });
+  document.getElementById('admin-questions').innerHTML = html;
+}
+
+// 저장 버튼 클릭 시
+document.getElementById('admin-save-btn').onclick = () => {
+  for (let i = 0; i < questions.length; i++) {
+    const newQ = document.getElementById(`admin-q-${i}`).value;
+    const newA = document.getElementById(`admin-a-${i}`).value;
+    questions[i].question = newQ;
+    questions[i].answer = newA;
+  }
+  document.getElementById('admin-save-msg').textContent = '저장되었습니다! 새로고침 전까지 적용됩니다.';
+  setTimeout(() => {
+    document.getElementById('admin-save-msg').textContent = '';
+  }, 2000);
 };
