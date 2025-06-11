@@ -13,6 +13,13 @@
       <button id="order-mode">순서대로 풀기</button>
       <button id="random-mode">랜덤으로 풀기</button>
     </div>
+    <div class="range-select" style="margin:15px 0;">
+      <label>문제 범위 지정: 
+        <input type="number" id="range-start" min="1" style="width:60px;"> ~ 
+        <input type="number" id="range-end" min="1" style="width:60px;">
+      </label>
+      <button id="range-mode">범위 랜덤 풀기</button>
+    </div>
     <div class="quiz" style="display:none;">
       <h2 id="question"></h2>
       <input type="text" id="answer-input" placeholder="정답을 입력하세요">

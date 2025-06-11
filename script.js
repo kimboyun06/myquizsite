@@ -141,9 +141,28 @@ let score = 0;
 let currentQuestions = [];
 let incorrectQuestions = [];
 
-// 2. 모드 선택
+// 기본 모드 선택
 document.getElementById('order-mode').onclick = () => startQuiz('order');
 document.getElementById('random-mode').onclick = () => startQuiz('random');
+
+// 범위 랜덤 모드
+document.getElementById('range-mode').onclick = () => {
+  const start = parseInt(document.getElementById('range-start').value, 10) || 1;
+  const end = parseInt(document.getElementById('range-end').value, 10) || questions.length;
+  if (start < 1 || end > questions.length || start > end) {
+    alert(`문제 번호는 1~${questions.length} 사이, 시작이 끝보다 작거나 같아야 합니다.`);
+    return;
+  }
+  currentQuestions = shuffle(questions.slice(start - 1, end));
+  currentIndex = 0;
+  score = 0;
+  incorrectQuestions = [];
+  document.querySelector('.mode-select').style.display = 'none';
+  document.querySelector('.range-select').style.display = 'none';
+  document.querySelector('.quiz').style.display = '';
+  document.querySelector('.result').style.display = 'none';
+  showQuestion();
+};
 
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -151,6 +170,7 @@ function shuffle(array) {
 
 function startQuiz(mode) {
   document.querySelector('.mode-select').style.display = 'none';
+  document.querySelector('.range-select').style.display = 'none';
   document.querySelector('.quiz').style.display = '';
   document.querySelector('.result').style.display = 'none';
   score = 0;
@@ -225,10 +245,10 @@ function showResult() {
   }
 }
 
-// 오답 다시 풀기
+// 오답 다시 풀기(랜덤)
 document.getElementById('retry-wrong-btn').onclick = () => {
   if (incorrectQuestions.length === 0) return;
-  currentQuestions = [...incorrectQuestions];
+  currentQuestions = shuffle([...incorrectQuestions]);
   incorrectQuestions = [];
   currentIndex = 0;
   score = 0;
@@ -237,14 +257,15 @@ document.getElementById('retry-wrong-btn').onclick = () => {
   showQuestion();
 };
 
-// 처음부터 다시 풀기
+// 처음부터 다시 풀기: 모드/범위 선택 모두 보이기
 document.getElementById('restart-btn').onclick = () => {
   document.querySelector('.mode-select').style.display = '';
+  document.querySelector('.range-select').style.display = '';
   document.querySelector('.result').style.display = 'none';
 };
 
 // ====== 관리자 기능 ======
-const ADMIN_PASSWORD = "0007"; // 원하는 비밀번호로 변경
+const ADMIN_PASSWORD = "1234"; // 원하는 비밀번호로 변경
 
 // 관리자 버튼 클릭 시
 document.getElementById('admin-btn').onclick = () => {
@@ -268,7 +289,6 @@ document.getElementById('admin-login-btn').onclick = () => {
 // 관리자 패널 표시
 function showAdminPanel() {
   document.getElementById('admin-panel').style.display = '';
-  // 문제/정답 수정 폼 생성
   let html = '';
   questions.forEach((q, idx) => {
     html += `
