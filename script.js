@@ -1,6 +1,8 @@
-// 1. 문제 데이터 (paste.txt에서 자동 추출)
-const questions = [
-  { question: "포장 표준화의 요소는 (   ), (   ), (   )이다.", answer: "강도 표준화, 치수 표준화, 재료 표준화" },
+// ===== 문제 데이터 =====
+
+// paste.txt 물류 빈칸형 (원본 그대로)
+const logisticsQuestions = [
+ { question: "포장 표준화의 요소는 (   ), (   ), (   )이다.", answer: "강도 표준화, 치수 표준화, 재료 표준화" },
   { question: "풀필먼트는 물류업체가 복수의 화주기업을 대신하여 주문 피킹, 포장, 배송을 대행하는 공동물류와 유사한 (   )형태를 말한다.", answer: "물류합리화" },
   { question: "풀필먼트의 기대효과는 물류비용 절감, (   ), 핵심역량 집중이다.", answer: "주문 리드타임 개선" },
   { question: "(   )는 유통경로 중 동일 단계에서 활동하는 복수의 기업이 결합한 형태이다.", answer: "수평적 유통경로" },
@@ -136,49 +138,634 @@ const questions = [
   { question: "수송은 선박, 철도, 트럭 등을 이용한 거점 간의 (   )이다.", answer: "간선운송" },
   { question: "배송은 트럭 등을 이용해 거점에서 수화인에게 전달하는 (   )이다.", answer: "지선운송" }
 ];
+
+// 스포츠 리더십 객관식 예시 10개
+const sportsMC = [
+  {
+  
+    question: "메라비언의 법칙에서 말(언어)이 차지하는 비율은?",
+    choices: ["7%", "38%", "55%", "93%"],
+    answer: "7%"
+  },
+  {
+    question: "리더의 태도에 해당하지 않는 것은?",
+    choices: ["충직", "자존", "배려", "자기과신"],
+    answer: "자기과신"
+  },
+  {
+    question: "운동의 긍정적 영향이 아닌 것은?",
+    choices: ["심폐지구력 증가", "사회적 연대감 증진", "운동 중독", "비만예방"],
+    answer: "운동 중독"
+  },
+  {
+    question: "운동의 보상 신경전달물질 중 ‘행복 호르몬’으로 불리는 것은?",
+    choices: ["도파민", "옥시토신", "세로토닌", "엔도르핀"],
+    answer: "세로토닌"
+  },
+  {
+    question: "스포츠맨십의 올바른 설명은?",
+    choices: [
+      "경기에서 이기는 것만 의미",
+      "정정당당 경쟁, 상대 존중",
+      "실력만 중시",
+      "규칙 무시"
+    ],
+    answer: "정정당당 경쟁, 상대 존중"
+  },
+  {
+    question: "리더십에서 ‘갈망’의 태도가 의미하는 것은?",
+    choices: ["현실에 안주", "비전을 향해 꾸준히 나아감", "타인을 비판", "변화 거부"],
+    answer: "비전을 향해 꾸준히 나아감"
+  },
+  {
+    question: "스포츠 리더십의 ‘개방’ 태도에 해당하는 것은?",
+    choices: ["다양한 가치 수용", "무관심", "폐쇄성", "독단"],
+    answer: "다양한 가치 수용"
+  },
+  {
+    question: "다음 중 올바른 역할 수행을 저해하는 태도가 아닌 것은?",
+    choices: ["자기과신", "회피", "성과만능주의", "배려"],
+    answer: "배려"
+  },
+  {
+    question: "운동의 긍정적 사회적 영향이 아닌 것은?",
+    choices: ["친목 형성", "사회적 연대감 증진", "고립감", "문제해결 능력"],
+    answer: "고립감"
+  },
+  {
+    question: "운동 습관이 건강에 미치는 영향으로 옳지 않은 것은?",
+    choices: ["체력 증진", "질병 예방", "비만 예방", "운동 중독"],
+    answer: "운동 중독"
+  },
+  {
+    question: "조직관리기술에 해당하지 않는 것은?",
+    choices: ["목표설정", "실행계획", "우선순위", "운동 습관"],
+    answer: "운동 습관"
+  },
+  {
+    question: "리더의 태도 중 ‘충직’이란?",
+    choices: ["거짓말을 해도 됨", "옳은 일을 하는 것", "이기주의", "자기과신"],
+    answer: "옳은 일을 하는 것"
+  },
+  {
+    question: "‘자존’의 태도는?",
+    choices: ["자기 품위를 지키는 것", "타인을 우선시", "무례함", "자기애 없음"],
+    answer: "자기 품위를 지키는 것"
+  },
+  {
+    question: "운동 중 가장 흔한 부상은?",
+    choices: ["염좌", "골절", "찰과상", "탈수"],
+    answer: "염좌"
+  },
+  {
+    question: "운동 중 탈수의 증상으로 옳지 않은 것은?",
+    choices: ["현기증", "무기력", "경련", "체온 상승"],
+    answer: "체온 상승"
+  },
+  {
+    question: "루틴의 장점이 아닌 것은?",
+    choices: ["내적 갈등 감소", "에너지 낭비 감소", "선택의 어려움 증가", "습관화"],
+    answer: "선택의 어려움 증가"
+  },
+  {
+    question: "자기 효능감이 높은 사람의 특징은?",
+    choices: ["실패에 좌절", "도전적 과제에 적극", "변명 많음", "무기력"],
+    answer: "도전적 과제에 적극"
+  },
+  {
+    question: "리더십의 기술 중 ‘비전’이란?",
+    choices: ["감정 다스림", "미래 방향 제시", "조직 관리", "소통"],
+    answer: "미래 방향 제시"
+  },
+  {
+    question: "비언어적 의사소통의 특징은?",
+    choices: ["1차원", "다차원", "해석 명확", "의도적"],
+    answer: "다차원"
+  },
+  {
+    question: "언어적 의사소통의 특징은?",
+    choices: ["1차원", "다차원", "비의도적", "연속적"],
+    answer: "1차원"
+  },
+  {
+    question: "올바른 의사소통 태도가 아닌 것은?",
+    choices: ["상대를 바라본다", "재진술한다", "자기만 말한다", "개방적 태도"],
+    answer: "자기만 말한다"
+  },
+  {
+    question: "스포츠 리더십의 도덕적 기준에 해당하지 않는 것은?",
+    choices: ["신뢰 형성", "팀 결속력 강화", "사회적 책임", "개인 실력만 중시"],
+    answer: "개인 실력만 중시"
+  },
+  {
+    question: "리더십의 목적은?",
+    choices: ["타인을 제압", "그룹의 목표 달성", "자신의 이익 추구", "타인을 조종"],
+    answer: "그룹의 목표 달성"
+  },
+  {
+    question: "운동의 긍정적 심리적 효과가 아닌 것은?",
+    choices: ["정신건강", "스트레스 해소", "우울증 완화", "불안 악화"],
+    answer: "불안 악화"
+  },
+  {
+    question: "운동의 긍정적 환경적 효과가 아닌 것은?",
+    choices: ["생활방식 개선", "식습관 개선", "지역사회 활성화", "환경 오염"],
+    answer: "환경 오염"
+  },
+  {
+    question: "운동의 부정적 영향이 아닌 것은?",
+    choices: ["염좌", "좌상", "과사용 손상", "면역력 강화"],
+    answer: "면역력 강화"
+  },
+  {
+    question: "루틴의 효과로 옳지 않은 것은?",
+    choices: ["내적 갈등 감소", "에너지 낭비 감소", "선택의 어려움 증가", "습관화"],
+    answer: "선택의 어려움 증가"
+  },
+  {
+    question: "자기 효능감이 낮은 사람의 특징은?",
+    choices: ["도전적 과제에 적극", "실패에 좌절", "긍정적 태도", "자신감"],
+    answer: "실패에 좌절"
+  },
+  {
+    question: "운동의 보상 신경전달물질 중 ‘사랑의 묘약’이라 불리는 것은?",
+    choices: ["도파민", "옥시토신", "세로토닌", "엔도르핀"],
+    answer: "옥시토신"
+  },
+  {
+    question: "리더십의 기술 중 ‘정서적 지능’의 설명으로 옳은 것은?",
+    choices: ["감정 인지 및 조절 능력", "신체적 능력", "운동능력", "외적 동기"],
+    answer: "감정 인지 및 조절 능력"
+  },
+  {
+    question: "리더십의 기술 중 ‘소통’의 특징이 아닌 것은?",
+    choices: ["언어적 소통", "비언어적 소통", "피드백", "자기중심"],
+    answer: "자기중심"
+  },
+  {
+    question: "조직관리기술의 요소가 아닌 것은?",
+    choices: ["목표설정", "실행계획", "우선순위", "운동 중독"],
+    answer: "운동 중독"
+  },
+  {
+    question: "마키아벨리형 관리의 핵심은?",
+    choices: ["사랑만 강조", "공포와 현실적 비전의 조화", "무계획", "감정만 중시"],
+    answer: "공포와 현실적 비전의 조화"
+  },
+  {
+    question: "맥락적 지능의 중요성은?",
+    choices: ["단기적 판단", "장기 전략과 전술 조정", "감정만 중시", "운동능력"],
+    answer: "장기 전략과 전술 조정"
+  },
+  {
+    question: "운동 중 가장 흔한 부상 두 가지는?",
+    choices: ["염좌/좌상", "골절/탈수", "찰과상/탈수", "좌상/골절"],
+    answer: "염좌/좌상"
+  },
+  {
+    question: "운동의 긍정적 영향 중 사회적 영향에 해당하지 않는 것은?",
+    choices: ["친목 형성", "사회적 연대감 증진", "문제해결 능력 향상", "탈수"],
+    answer: "탈수"
+  },
+  {
+    question: "운동 습관이 건강에 미치는 영향이 아닌 것은?",
+    choices: ["체력 증진", "질병 예방", "비만 예방", "운동 중독"],
+    answer: "운동 중독"
+  },
+  {
+    question: "리더의 태도 중 ‘배려’란?",
+    choices: ["팀원과 함께 성장", "독단적", "무례", "자기중심"],
+    answer: "팀원과 함께 성장"
+  },
+  {
+    question: "리더의 태도 중 ‘개방’이란?",
+    choices: ["다양한 가치 수용", "폐쇄적", "무관심", "독단"],
+    answer: "다양한 가치 수용"
+  },
+  {
+    question: "리더의 태도 중 ‘단정’이란?",
+    choices: ["초심과 중심을 잊지 않음", "준비 부족", "우유부단", "무계획"],
+    answer: "초심과 중심을 잊지 않음"
+  },
+  {
+    question: "운동의 긍정적 효과가 아닌 것은?",
+    choices: ["심폐지구력 증가", "비만 예방", "근력 증가", "면역 체계 약화"],
+    answer: "면역 체계 약화"
+  },
+  {
+    question: "운동의 심리적 긍정 효과가 아닌 것은?",
+    choices: ["정신건강", "스트레스 해소", "자신감 향상", "불안 악화"],
+    answer: "불안 악화"
+  },
+  {
+    question: "운동의 사회적 긍정 효과가 아닌 것은?",
+    choices: ["친목 형성", "사회적 연대감 증진", "고립감", "문제해결 능력"],
+    answer: "고립감"
+  },
+  {
+    question: "운동의 환경적 긍정 효과가 아닌 것은?",
+    choices: ["생활방식 개선", "식습관 개선", "지역사회 활성화", "환경 오염"],
+    answer: "환경 오염"
+  },
+  {
+    question: "운동의 부정적 영향이 아닌 것은?",
+    choices: ["염좌", "좌상", "과사용 손상", "면역력 강화"],
+    answer: "면역력 강화"
+  },
+  {
+    question: "운동 중 탈수의 위험이 높은 경우는?",
+    choices: ["수분 섭취 충분", "고온 환경", "짧은 운동", "저강도 운동"],
+    answer: "고온 환경"
+  },
+  {
+    question: "운동 중독의 위험성으로 옳지 않은 것은?",
+    choices: ["신체 손상 인식", "통증 무시", "운동 시간 증가", "금단 증상"],
+    answer: "신체 손상 인식"
+  },
+  {
+    question: "리더십의 기술 중 ‘비전’이란?",
+    choices: ["감정 다스림", "미래 방향 제시", "조직 관리", "소통"],
+    answer: "미래 방향 제시"
+  },
+  {
+    question: "운동의 긍정적 영향 중 환경적 효과 두 가지는?",
+    choices: ["생활방식 개선/식습관 개선", "체력 증진/질병 예방", "비만 예방/근력 증가", "면역력 강화/우울증 완화"],
+    answer: "생활방식 개선/식습관 개선"
+  },
+  {
+    question: "운동의 긍정적 영향 중 심리적 효과 두 가지는?",
+    choices: ["정신건강/스트레스 해소", "비만 예방/근력 증가", "면역력 강화/우울증 완화", "생활방식 개선/식습관 개선"],
+    answer: "정신건강/스트레스 해소"
+  },
+  {
+    question: "운동의 긍정적 영향 중 사회적 효과 두 가지는?",
+    choices: ["친목 형성/사회적 연대감 증진", "비만 예방/근력 증가", "면역력 강화/우울증 완화", "생활방식 개선/식습관 개선"],
+    answer: "친목 형성/사회적 연대감 증진"
+  },
+  {
+    question: "운동의 긍정적 영향 중 생리적 효과 두 가지는?",
+    choices: ["심폐지구력 증가/비만 예방", "정신건강/스트레스 해소", "친목 형성/사회적 연대감 증진", "생활방식 개선/식습관 개선"],
+    answer: "심폐지구력 증가/비만 예방"
+  },
+  {
+    question: "운동의 긍정적 영향 중 면역 체계 강화와 관련된 효과는?",
+    choices: ["호르몬 및 면역 체계 강화", "비만 예방", "근력 증가", "정신건강"],
+    answer: "호르몬 및 면역 체계 강화"
+  },
+  {
+    question: "운동의 긍정적 영향 중 수면의 질 향상과 관련된 신경전달물질은?",
+    choices: ["세로토닌", "도파민", "옥시토신", "엔도르핀"],
+    answer: "세로토닌"
+  },
+  {
+    question: "운동의 긍정적 영향 중 스트레스 해소와 관련된 신경전달물질은?",
+    choices: ["엔도르핀", "도파민", "옥시토신", "세로토닌"],
+    answer: "엔도르핀"
+  },
+  {
+    question: "운동의 긍정적 영향 중 즐거움, 신남, 행복감을 주는 신경전달물질은?",
+    choices: ["도파민", "옥시토신", "세로토닌", "엔도르핀"],
+    answer: "도파민"
+  },
+  {
+    question: "운동의 긍정적 영향 중 유대감, 신뢰감을 주는 신경전달물질은?",
+    choices: ["옥시토신", "도파민", "세로토닌", "엔도르핀"],
+    answer: "옥시토신"
+  },
+  {"question": "다음 중 스포츠 리더십에서 '비전'에 해당하는 설명은?", "choices": ["감정 조절 능력", "미래의 목표와 방향 제시", "팀원과의 소통", "조직관리기술"], "answer": "미래의 목표와 방향 제시"},
+  {"question": "스포츠 리더십의 '소통'에 대한 설명으로 옳지 않은 것은?", "choices": ["언어적 소통만 포함한다", "비언어적 소통도 중요하다", "해석의 오류가 적을수록 명료하다", "피드백이 중요하다"], "answer": "언어적 소통만 포함한다"},
+  {"question": "조직관리기술에 해당하지 않는 것은?", "choices": ["목표설정", "실행계획", "우선순위", "운동 습관"], "answer": "운동 습관"},
+  {"question": "마키아벨리형 관리의 특징으로 옳은 것은?", "choices": ["소프트파워만 중시", "하드파워와 소프트파워의 조화", "감정 중심", "비전이 없다"], "answer": "하드파워와 소프트파워의 조화"},
+  {"question": "맥락적 지능이란?", "choices": ["감정 조절 능력", "전략과 전술을 상황에 맞게 조정하는 능력", "운동능력", "신체적 건강"], "answer": "전략과 전술을 상황에 맞게 조정하는 능력"},
+  {"question": "스포츠 리더십에서 '충직'의 의미는?", "choices": ["거짓말을 해도 된다", "옳은 일을 하는 것", "이기주의", "성과만능주의"], "answer": "옳은 일을 하는 것"},
+  {"question": "'자존'이란?", "choices": ["자기애가 없는 상태", "자기 품위를 지키는 것", "타인을 우선시", "무례함"], "answer": "자기 품위를 지키는 것"},
+  {"question": "'배려'의 태도에 해당하는 것은?", "choices": ["팀원과 더불어 성장", "기준 없음", "독단적", "무례"], "answer": "팀원과 더불어 성장"},
+  {"question": "'개방'의 태도는?", "choices": ["다양한 가치 수용", "폐쇄적", "무관심", "독단"], "answer": "다양한 가치 수용"},
+  {"question": "'갈망'의 태도는?", "choices": ["비전을 향해 걷는 태도", "현실에 안주", "변화 거부", "무기력"], "answer": "비전을 향해 걷는 태도"},
+  {"question": "'단정'의 태도는?", "choices": ["초심과 중심을 잊지 않는 태도", "준비 부족", "우유부단", "무계획"], "answer": "초심과 중심을 잊지 않는 태도"},
+  {"question": "올바른 역할 수행을 저해하는 태도가 아닌 것은?", "choices": ["자기과신", "회피", "성과만능주의", "배려"], "answer": "배려"},
+  {"question": "운동의 생리적 긍정 효과가 아닌 것은?", "choices": ["심폐지구력 증가", "비만 예방", "면역 체계 약화", "근력 증가"], "answer": "면역 체계 약화"},
+  {"question": "운동의 심리적 긍정 효과가 아닌 것은?", "choices": ["정신건강", "스트레스 해소", "우울증 완화", "불안 악화"], "answer": "불안 악화"},
+  {"question": "운동의 사회적 긍정 효과가 아닌 것은?", "choices": ["친목 형성", "사회적 연대감 증진", "고립감", "문제해결 능력"], "answer": "고립감"},
+  {"question": "운동의 환경적 긍정 효과가 아닌 것은?", "choices": ["생활방식 개선", "식습관 개선", "지역사회 활성화", "환경 오염"], "answer": "환경 오염"},
+  {"question": "운동의 부정적 영향이 아닌 것은?", "choices": ["염좌", "좌상", "과사용 손상", "면역력 강화"], "answer": "면역력 강화"},
+  {"question": "운동 중 가장 흔한 부상은?", "choices": ["염좌", "골절", "찰과상", "탈수"], "answer": "염좌"},
+  {"question": "운동 중 탈수의 위험이 높은 경우는?", "choices": ["수분 섭취 충분", "고온 환경", "짧은 운동", "저강도 운동"], "answer": "고온 환경"},
+  {"question": "운동 중독의 위험성으로 옳지 않은 것은?", "choices": ["신체 손상 인식", "통증 무시", "운동 시간 증가", "금단 증상"], "answer": "신체 손상 인식"},
+  {"question": "루틴의 효과로 옳지 않은 것은?", "choices": ["내적 갈등 감소", "에너지 낭비 감소", "선택의 어려움 증가", "습관화"], "answer": "선택의 어려움 증가"},
+  {"question": "자기 효능감이 높은 사람의 특징은?", "choices": ["실패에 좌절", "도전적 과제에 적극", "변명 많음", "무기력"], "answer": "도전적 과제에 적극"},
+  {"question": "운동의 보상 신경전달물질 중 ‘사랑의 묘약’이라 불리는 것은?", "choices": ["도파민", "옥시토신", "세로토닌", "엔도르핀"], "answer": "옥시토신"},
+  {"question": "리더십의 기술 중 ‘정서적 지능’의 설명으로 옳은 것은?", "choices": ["감정 인지 및 조절 능력", "신체적 능력", "운동능력", "외적 동기"], "answer": "감정 인지 및 조절 능력"},
+  {"question": "리더십의 기술 중 ‘소통’의 특징이 아닌 것은?", "choices": ["언어적 소통", "비언어적 소통", "피드백", "자기중심"], "answer": "자기중심"},
+  {"question": "조직관리기술의 요소가 아닌 것은?", "choices": ["목표설정", "실행계획", "우선순위", "운동 중독"], "answer": "운동 중독"},
+  {"question": "마키아벨리형 관리의 핵심은?", "choices": ["사랑만 강조", "공포와 현실적 비전의 조화", "무계획", "감정만 중시"], "answer": "공포와 현실적 비전의 조화"},
+  {"question": "맥락적 지능의 중요성은?", "choices": ["단기적 판단", "장기 전략과 전술 조정", "감정만 중시", "운동능력"], "answer": "장기 전략과 전술 조정"},
+  {"question": "운동 중 가장 흔한 부상 두 가지는?", "choices": ["염좌/좌상", "골절/탈수", "찰과상/탈수", "좌상/골절"], "answer": "염좌/좌상"},
+  {"question": "운동의 긍정적 영향 중 사회적 영향에 해당하지 않는 것은?", "choices": ["친목 형성", "사회적 연대감 증진", "문제해결 능력 향상", "탈수"], "answer": "탈수"},
+  {"question": "운동 습관이 건강에 미치는 영향이 아닌 것은?", "choices": ["체력 증진", "질병 예방", "비만 예방", "운동 중독"], "answer": "운동 중독"},
+  {"question": "리더의 태도 중 ‘배려’란?", "choices": ["팀원과 함께 성장", "독단적", "무례", "자기중심"], "answer": "팀원과 함께 성장"},
+  {"question": "리더의 태도 중 ‘개방’이란?", "choices": ["다양한 가치 수용", "폐쇄적", "무관심", "독단"], "answer": "다양한 가치 수용"},
+  {"question": "리더의 태도 중 ‘단정’이란?", "choices": ["초심과 중심을 잊지 않음", "준비 부족", "우유부단", "무계획"], "answer": "초심과 중심을 잊지 않음"},
+  {"question": "운동의 긍정적 효과가 아닌 것은?", "choices": ["심폐지구력 증가", "비만 예방", "근력 증가", "면역 체계 약화"], "answer": "면역 체계 약화"},
+  {"question": "운동의 심리적 긍정 효과가 아닌 것은?", "choices": ["정신건강", "스트레스 해소", "자신감 향상", "불안 악화"], "answer": "불안 악화"},
+  {"question": "운동의 사회적 긍정 효과가 아닌 것은?", "choices": ["친목 형성", "사회적 연대감 증진", "고립감", "문제해결 능력"], "answer": "고립감"},
+  {"question": "운동의 환경적 긍정 효과가 아닌 것은?", "choices": ["생활방식 개선", "식습관 개선", "지역사회 활성화", "환경 오염"], "answer": "환경 오염"},
+  {"question": "운동의 부정적 영향이 아닌 것은?", "choices": ["염좌", "좌상", "과사용 손상", "면역력 강화"], "answer": "면역력 강화"},
+  {"question": "운동 중 탈수의 위험이 높은 경우는?", "choices": ["수분 섭취 충분", "고온 환경", "짧은 운동", "저강도 운동"], "answer": "고온 환경"},
+  {"question": "운동 중독의 위험성으로 옳지 않은 것은?", "choices": ["신체 손상 인식", "통증 무시", "운동 시간 증가", "금단 증상"], "answer": "신체 손상 인식"},
+  {"question": "리더십의 기술 중 ‘비전’이란?", "choices": ["감정 다스림", "미래 방향 제시", "조직 관리", "소통"], "answer": "미래 방향 제시"},
+  {"question": "운동의 긍정적 영향 중 환경적 효과 두 가지는?", "choices": ["생활방식 개선/식습관 개선", "체력 증진/질병 예방", "비만 예방/근력 증가", "면역력 강화/우울증 완화"], "answer": "생활방식 개선/식습관 개선"},
+  {"question": "운동의 긍정적 영향 중 심리적 효과 두 가지는?", "choices": ["정신건강/스트레스 해소", "비만 예방/근력 증가", "면역력 강화/우울증 완화", "생활방식 개선/식습관 개선"], "answer": "정신건강/스트레스 해소"},
+  {"question": "운동의 긍정적 영향 중 사회적 효과 두 가지는?", "choices": ["친목 형성/사회적 연대감 증진", "비만 예방/근력 증가", "면역력 강화/우울증 완화", "생활방식 개선/식습관 개선"], "answer": "친목 형성/사회적 연대감 증진"},
+  {"question": "운동의 긍정적 영향 중 생리적 효과 두 가지는?", "choices": ["심폐지구력 증가/비만 예방", "정신건강/스트레스 해소", "친목 형성/사회적 연대감 증진", "생활방식 개선/식습관 개선"], "answer": "심폐지구력 증가/비만 예방"},
+  {"question": "운동의 긍정적 영향 중 면역 체계 강화와 관련된 효과는?", "choices": ["호르몬 및 면역 체계 강화", "비만 예방", "근력 증가", "정신건강"], "answer": "호르몬 및 면역 체계 강화"},
+  {"question": "운동의 긍정적 영향 중 수면의 질 향상과 관련된 신경전달물질은?", "choices": ["세로토닌", "도파민", "옥시토신", "엔도르핀"], "answer": "세로토닌"},
+  {"question": "운동의 긍정적 영향 중, 스트레스 해소와 관련된 신경전달물질은?", "choices": ["엔도르핀", "도파민", "옥시토신", "세로토닌"], "answer": "엔도르핀"},
+  {"question": "운동의 긍정적 영향 중 즐거움, 신남, 행복감을 주는 신경전달물질은?", "choices": ["도파민", "옥시토신", "세로토닌", "엔도르핀"], "answer": "도파민"},
+  {"question": "운동의 긍정적 영향 중 유대감, 신뢰감을 주는 신경전달물질은?", "choices": ["옥시토신", "도파민", "세로토닌", "엔도르핀"], "answer": "옥시토신"}
+
+];
+
+// 스포츠 리더십 OX 예시 10개
+const sportsOX = [
+   { question: "리더는 사람이 아니라 역할이다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 사회적 연대감 증진이 포함된다. (O/X)", answer: "O" },
+  { question: "운동 중독은 운동의 긍정적 영향에 해당한다. (O/X)", answer: "X" },
+  { question: "리더십의 기술에는 높은 정서적 지능이 포함된다. (O/X)", answer: "O" },
+  { question: "운동 습관은 건강에 부정적인 영향을 미친다. (O/X)", answer: "X" },
+  { question: "조직관리기술에는 시간관리와 평가가 포함된다. (O/X)", answer: "O" },
+  { question: "스포츠 리더십에서 도덕은 개인의 내적인 기준에 관한 것이다. (O/X)", answer: "O" },
+  { question: "올바른 의사소통 태도는 상대방을 무시하는 것이다. (O/X)", answer: "X" },
+  { question: "피들러의 상황적 리더십 이론은 리더의 운동능력을 가장 중요하게 본다. (O/X)", answer: "X" },
+  { question: "비언어적 의사소통에는 신체의 움직임과 음질의 변화가 포함된다. (O/X)", answer: "O" },
+  { question: "스포츠맨십은 경기에서 이기는 것만을 의미한다. (O/X)", answer: "X" },
+  { question: "리더의 태도에는 충직, 자존, 배려, 개방, 갈망, 단정이 있다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 스트레스 해소와 자신감 향상이 있다. (O/X)", answer: "O" },
+  { question: "운동 중 가장 흔한 부상 중 하나는 염좌이다. (O/X)", answer: "O" },
+  { question: "비언어적 의사소통은 언어영역 안에 있는 모든 의사소통 방식이다. (O/X)", answer: "X" },
+  { question: "리더십의 기술 중 하나는 마키아벨리형 관리이다. (O/X)", answer: "O" },
+  { question: "도덕은 사회적 규범과 원칙을 의미한다. (O/X)", answer: "X" },
+  { question: "운동의 보상 신경전달물질 중 도파민은 즐거움과 행복감을 준다. (O/X)", answer: "O" },
+  { question: "루틴은 불필요한 내적 갈등을 증가시킨다. (O/X)", answer: "X" },
+  { question: "리더를 찾는 방법에는 팔로워의 존재 파악이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 면역 체계 강화가 포함된다. (O/X)", answer: "O" },
+  { question: "운동 중독은 운동의 긍정적 영향이다. (O/X)", answer: "X" },
+  { question: "루틴은 내적 갈등을 줄여준다. (O/X)", answer: "O" },
+  { question: "자기 효능감이 높을수록 도전적 과제에 더 적극적으로 임한다. (O/X)", answer: "O" },
+  { question: "리더십 기술에는 마키아벨리형 관리가 포함된다. (O/X)", answer: "O" },
+  { question: "운동 습관은 건강에 부정적 영향을 미친다. (O/X)", answer: "X" },
+  { question: "비언어적 의사소통은 언어적 의사소통보다 해석이 더 명확하다. (O/X)", answer: "X" },
+  { question: "스포츠 리더십에서 도덕은 사회적 규범에 관한 것이다. (O/X)", answer: "X" },
+  { question: "윤리는 개인의 내적 기준에 관한 것이다. (O/X)", answer: "X" },
+  { question: "스포츠맨십은 경기에서 이기는 것만을 의미한다. (O/X)", answer: "X" },
+  { question: "리더의 태도에는 자기과신이 포함된다. (O/X)", answer: "X" },
+  { question: "운동의 부정적 영향에는 과사용 손상이 있다. (O/X)", answer: "O" },
+  { question: "운동 중 탈수는 수분 섭취로 항상 쉽게 해결된다. (O/X)", answer: "X" },
+  { question: "운동 중 엔도르핀 분비는 운동 중독의 원인이 될 수 있다. (O/X)", answer: "O" },
+  { question: "리더십의 목적은 그룹의 목표 달성과 발전이다. (O/X)", answer: "O" },
+  { question: "리더십의 기술에는 소통이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 심리적 효과에는 자신감 향상이 있다. (O/X)", answer: "O" },
+  { question: "조직관리기술에는 시간관리와 평가가 포함된다. (O/X)", answer: "O" },
+  { question: "올바른 의사소통 태도는 상대방을 무시하는 것이다. (O/X)", answer: "X" },
+  { question: "칭찬은 그 즉시, 진심을 담아, 구체적으로 해야 한다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 수면의 질 향상이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 호르몬 및 면역 체계 강화가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 우울증 완화가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 체력 증진이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 질병 예방이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 비만 예방이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 근력 증가가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 생활방식 개선이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 식습관 개선이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 지역사회 활성화가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 환경 오염이 포함된다. (O/X)", answer: "X" },
+  { question: "운동의 긍정적 영향에는 호르몬 및 면역 체계 강화가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 수면의 질 향상이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 스트레스 해소가 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 정신건강이 포함된다. (O/X)", answer: "O" },
+  { question: "운동의 긍정적 영향에는 사회적 연대감 증진이 포함된다. (O/X)", answer: "O" },
+  {"question": "운동의 긍정적 영향에는 면역 체계 강화가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동 중독은 운동의 긍정적 영향이다. (O/X)", "answer": "X"},
+  {"question": "루틴은 내적 갈등을 줄여준다. (O/X)", "answer": "O"},
+  {"question": "자기 효능감이 높을수록 도전적 과제에 더 적극적으로 임한다. (O/X)", "answer": "O"},
+  {"question": "리더십 기술에는 마키아벨리형 관리가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동 습관은 건강에 부정적 영향을 미친다. (O/X)", "answer": "X"},
+  {"question": "비언어적 의사소통은 언어적 의사소통보다 해석이 더 명확하다. (O/X)", "answer": "X"},
+  {"question": "스포츠 리더십에서 도덕은 사회적 규범에 관한 것이다. (O/X)", "answer": "X"},
+  {"question": "윤리는 개인의 내적 기준에 관한 것이다. (O/X)", "answer": "X"},
+  {"question": "스포츠맨십은 경기에서 이기는 것만을 의미한다. (O/X)", "answer": "X"},
+  {"question": "리더의 태도에는 자기과신이 포함된다. (O/X)", "answer": "X"},
+  {"question": "운동의 부정적 영향에는 과사용 손상이 있다. (O/X)", "answer": "O"},
+  {"question": "운동 중 탈수는 수분 섭취로 항상 쉽게 해결된다. (O/X)", "answer": "X"},
+  {"question": "운동 중 엔도르핀 분비는 운동 중독의 원인이 될 수 있다. (O/X)", "answer": "O"},
+  {"question": "리더십의 목적은 그룹의 목표 달성과 발전이다. (O/X)", "answer": "O"},
+  {"question": "리더십의 기술에는 소통이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 심리적 효과에는 자신감 향상이 있다. (O/X)", "answer": "O"},
+  {"question": "조직관리기술에는 시간관리와 평가가 포함된다. (O/X)", "answer": "O"},
+  {"question": "올바른 의사소통 태도는 상대방을 무시하는 것이다. (O/X)", "answer": "X"},
+  {"question": "칭찬은 그 즉시, 진심을 담아, 구체적으로 해야 한다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 수면의 질 향상이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 호르몬 및 면역 체계 강화가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 우울증 완화가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 체력 증진이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 질병 예방이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 비만 예방이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 근력 증가가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 생활방식 개선이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 식습관 개선이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 지역사회 활성화가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 환경 오염이 포함된다. (O/X)", "answer": "X"},
+  {"question": "운동의 긍정적 영향에는 호르몬 및 면역 체계 강화가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 수면의 질 향상이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 스트레스 해소가 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 정신건강이 포함된다. (O/X)", "answer": "O"},
+  {"question": "운동의 긍정적 영향에는 사회적 연대감 증진이 포함된다. (O/X)", "answer": "O"}
+];
+
+// 스포츠 리더십 단답형 예시 10개
+const sportsShort = [
+  {
+    question: "리더의 태도 여섯 가지를 모두 쓰시오.",
+    answer: "충직, 자존, 배려, 개방, 갈망, 단정"
+  },
+  {
+    question: "메라비언의 법칙에서 효과적인 소통에 가장 큰 영향을 미치는 요소는?",
+    answer: "비언어적 요소"
+  },
+  {
+    question: "운동의 긍정적 영향 세 가지를 쓰시오.",
+    answer: "심폐지구력 증가, 비만예방, 정신건강"
+  },
+  {
+    question: "운동의 부정적 영향 중, 같은 동작을 반복적으로 수행해 발생하는 손상은?",
+    answer: "과사용 손상"
+  },
+  {
+    question: "운동의 보상 신경전달물질 중 '즐거움, 신남, 행복감'을 주는 것은?",
+    answer: "도파민"
+  },
+  {
+    question: "리더를 찾는 네 가지 방법을 쓰시오.",
+    answer: "개인의 특성 파악, 주변 맥락 파악, 팔로워의 존재, 지속적 자기 개발"
+  },
+  {
+    question: "올바른 의사소통 태도 세 가지를 쓰시오.",
+    answer: "상대를 바라본다, 재진술한다, 개방적인 자세와 표정"
+  },
+  {
+    question: "스포츠 리더십에서 도덕과 윤리의 차이를 간단히 설명하시오.",
+    answer: "도덕은 개인의 내적 기준, 윤리는 사회적 규범과 원칙"
+  },
+  {
+    question: "운동 중 흔히 발생하는 부상 두 가지를 쓰시오.",
+    answer: "염좌, 좌상"
+  },
+  {
+    question: "운동의 긍정적 영향 중 사회적 영향 두 가지를 쓰시오.",
+    answer: "친목 형성, 사회적 연대감 증진"
+  },
+  {
+    question: "리더십의 기술 여섯 가지를 모두 쓰시오.",
+    answer: "정서적 지능, 비전, 소통, 조직관리기술, 마키아벨리형 관리, 맥락적 지능"
+  },
+  {
+    question: "의사소통의 기능 네 가지를 쓰시오.",
+    answer: "통제, 동기부여, 감정표현, 정보제공"
+  },
+  {
+    question: "운동 습관이 건강에 미치는 긍정적 영향 두 가지를 쓰시오.",
+    answer: "체력 증진, 질병 예방"
+  },
+  {
+    question: "스포츠맨십의 의미를 쓰시오.",
+    answer: "정정당당하게 경쟁하고 상대를 존중하는 태도"
+  },
+  {
+    question: "리더십에서 가장 중요한 특징 한 가지를 쓰시오.",
+    answer: "상호간의 신뢰와 존중"
+  },
+  {
+    question: "리더의 덕목 네 가지를 쓰시오.",
+    answer: "전문성, 의사소통능력, 태도=인성, 역경지수"
+  },
+  {
+    question: "운동의 보상 신경전달물질 네 가지를 쓰시오.",
+    answer: "도파민, 옥시토신, 세로토닌, 엔도르핀"
+  },
+  {
+    question: "운동의 긍정적 심리적 영향 두 가지를 쓰시오.",
+    answer: "정신건강, 스트레스 해소"
+  },
+  {
+    question: "건강관리에서 본 하인리히법칙이란 무엇인가?",
+    answer: "작은 문제가 큰 사고로 이어질 수 있으니, 사소한 습관 관리가 중요함"
+  },
+  {
+    question: "루틴의 정의를 쓰시오.",
+    answer: "동작이나 절차를 의도적으로 반복함으로써 자신을 정리하는 일련의 생각과 행동"
+  },
+  {"question": "운동의 부정적 영향 중, 인대가 늘어나거나 부어오르는 부상은?", "answer": "염좌"},
+  {"question": "운동의 긍정적 영향 중, 협동심과 리더십 등 사회적 건강에 필요한 덕목을 배울 수 있는 것은?", "answer": "긍정적 정서 형성"},
+  {"question": "운동 중 가장 흔히 발생하는 부상 두 가지를 쓰시오.", "answer": "염좌, 좌상"},
+  {"question": "운동의 보상 신경전달물질 네 가지를 쓰시오.", "answer": "도파민, 옥시토신, 세로토닌, 엔도르핀"},
+  {"question": "운동 습관이 건강에 미치는 영향 세 가지를 쓰시오.", "answer": "체력 증진, 질병 예방, 비만 예방"},
+  {"question": "리더십의 기술 여섯 가지를 모두 쓰시오.", "answer": "정서적 지능, 비전, 소통, 조직관리기술, 마키아벨리형 관리, 맥락적 지능"},
+  {"question": "리더의 태도 여섯 가지를 모두 쓰시오.", "answer": "충직, 자존, 배려, 개방, 갈망, 단정"},
+  {"question": "리더를 찾는 네 가지 방법을 쓰시오.", "answer": "개인의 특성 파악, 주변 맥락 파악, 팔로워의 존재, 지속적 자기 개발"},
+  {"question": "올바른 의사소통 태도 세 가지를 쓰시오.", "answer": "상대를 바라본다, 재진술한다, 개방적인 자세와 표정"},
+  {"question": "스포츠 리더십에서 도덕과 윤리의 차이를 간단히 설명하시오.", "answer": "도덕은 개인의 내적 기준, 윤리는 사회적 규범과 원칙"},
+  {"question": "운동 중 흔히 발생하는 부상 두 가지를 쓰시오.", "answer": "염좌, 좌상"},
+  {"question": "운동의 긍정적 영향 중 사회적 영향 두 가지를 쓰시오.", "answer": "친목 형성, 사회적 연대감 증진"},
+  {"question": "리더십의 기술 여섯 가지를 모두 쓰시오.", "answer": "정서적 지능, 비전, 소통, 조직관리기술, 마키아벨리형 관리, 맥락적 지능"},
+  {"question": "의사소통의 기능 네 가지를 쓰시오.", "answer": "통제, 동기부여, 감정표현, 정보제공"},
+  {"question": "운동 습관이 건강에 미치는 긍정적 영향 두 가지를 쓰시오.", "answer": "체력 증진, 질병 예방"},
+  {"question": "스포츠맨십의 의미를 쓰시오.", "answer": "정정당당하게 경쟁하고 상대를 존중하는 태도"},
+  {"question": "리더십에서 가장 중요한 특징 한 가지를 쓰시오.", "answer": "상호간의 신뢰와 존중"},
+  {"question": "리더의 덕목 네 가지를 쓰시오.", "answer": "전문성, 의사소통능력, 태도=인성, 역경지수"},
+  {"question": "운동의 보상 신경전달물질 네 가지를 쓰시오.", "answer": "도파민, 옥시토신, 세로토닌, 엔도르핀"},
+  {"question": "운동의 긍정적 심리적 영향 두 가지를 쓰시오.", "answer": "정신건강, 스트레스 해소"},
+  {"question": "건강관리에서 본 하인리히법칙이란 무엇인가?", "answer": "작은 문제가 큰 사고로 이어질 수 있으니, 사소한 습관 관리가 중요함"},
+  {"question": "루틴의 정의를 쓰시오.", "answer": "동작이나 절차를 의도적으로 반복함으로써 자신을 정리하는 일련의 생각과 행동"}
+  // ...더 추가
+];
+
+// ===== 과목/유형 구조 =====
+const subjects = {
+  "물류": {
+    blank: logisticsQuestions
+  },
+  "스포츠 리더십": {
+    mc: sportsMC,
+    ox: sportsOX,
+    short: sportsShort
+  }
+};
+
+// ===== 프로그램 로직 =====
+let selectedSubject = "물류";
+let currentType = "blank";
+let currentQuestions = [];
 let currentIndex = 0;
 let score = 0;
-let currentQuestions = [];
 let incorrectQuestions = [];
-
-// 기본 모드 선택
-document.getElementById('order-mode').onclick = () => startQuiz('order');
-document.getElementById('random-mode').onclick = () => startQuiz('random');
-
-// 범위 랜덤 모드
-document.getElementById('range-mode').onclick = () => {
-  const start = parseInt(document.getElementById('range-start').value, 10) || 1;
-  const end = parseInt(document.getElementById('range-end').value, 10) || questions.length;
-  if (start < 1 || end > questions.length || start > end) {
-    alert(`문제 번호는 1~${questions.length} 사이, 시작이 끝보다 작거나 같아야 합니다.`);
-    return;
-  }
-  currentQuestions = shuffle(questions.slice(start - 1, end));
-  currentIndex = 0;
-  score = 0;
-  incorrectQuestions = [];
-  document.querySelector('.mode-select').style.display = 'none';
-  document.querySelector('.range-select').style.display = 'none';
-  document.querySelector('.quiz').style.display = '';
-  document.querySelector('.result').style.display = 'none';
-  showQuestion();
-};
 
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function startQuiz(mode) {
-  document.querySelector('.mode-select').style.display = 'none';
-  document.querySelector('.range-select').style.display = 'none';
+// 과목 선택
+document.getElementById('subject-confirm').onclick = () => {
+  selectedSubject = document.getElementById('subject-select').value;
+  document.querySelector('.subject-select').style.display = 'none';
+  document.querySelector('.type-select').style.display = '';
+  // 물류면 빈칸형만, 스포츠면 3유형 모두
+  if (selectedSubject === "물류") {
+    document.getElementById('type-select').innerHTML = '<option value="blank">빈칸형</option>';
+    document.querySelector('.range-select').style.display = '';
+  } else {
+    document.getElementById('type-select').innerHTML =
+      '<option value="mc">객관식</option><option value="ox">OX</option><option value="short">단답형</option>';
+    document.querySelector('.range-select').style.display = 'none';
+  }
+};
+
+// 유형 선택
+document.getElementById('type-confirm').onclick = () => {
+  currentType = document.getElementById('type-select').value;
+  if (selectedSubject === "물류") {
+    currentQuestions = shuffle([...subjects["물류"].blank]);
+    document.querySelector('.range-select').style.display = '';
+  } else {
+    currentQuestions = shuffle([...subjects["스포츠 리더십"][currentType]]);
+    document.querySelector('.range-select').style.display = 'none';
+  }
+  currentIndex = 0;
+  score = 0;
+  incorrectQuestions = [];
+  document.querySelector('.type-select').style.display = 'none';
   document.querySelector('.quiz').style.display = '';
   document.querySelector('.result').style.display = 'none';
-  score = 0;
-  currentIndex = 0;
-  incorrectQuestions = [];
-  currentQuestions = mode === 'random' ? shuffle([...questions]) : [...questions];
   showQuestion();
-}
+};
+
+// 물류 범위 랜덤
+document.getElementById('range-mode').onclick = () => {
+  if (selectedSubject !== "물류") return;
+  const start = parseInt(document.getElementById('range-start').value, 10) || 1;
+  const end = parseInt(document.getElementById('range-end').value, 10) || subjects["물류"].blank.length;
+  if (start < 1 || end > subjects["물류"].blank.length || start > end) {
+    alert(`문제 번호는 1~${subjects["물류"].blank.length} 사이, 시작이 끝보다 작거나 같아야 합니다.`);
+    return;
+  }
+  currentQuestions = shuffle(subjects["물류"].blank.slice(start - 1, end));
+  currentIndex = 0;
+  score = 0;
+  incorrectQuestions = [];
+  document.querySelector('.type-select').style.display = 'none';
+  document.querySelector('.quiz').style.display = '';
+  document.querySelector('.result').style.display = 'none';
+  showQuestion();
+};
 
 function showQuestion() {
   if (currentIndex >= currentQuestions.length) {
@@ -186,53 +773,92 @@ function showQuestion() {
     return;
   }
   const q = currentQuestions[currentIndex];
-  document.getElementById('question').textContent = `${currentIndex + 1}. ${q.question}`;
-  document.getElementById('answer-input').value = '';
   document.getElementById('feedback').textContent = '';
   document.getElementById('next-btn').style.display = 'none';
-  document.getElementById('answer-input').focus();
-}
+  document.getElementById('question').textContent = `${currentIndex + 1}. ${q.question}`;
+  document.getElementById('answer-input').style.display = 'none';
+  document.getElementById('choices').innerHTML = '';
 
-// 답 제출 함수
-function submitAnswer() {
-  const userAnswer = document.getElementById('answer-input').value.trim();
-  const correctAnswer = currentQuestions[currentIndex].answer;
-  if (userAnswer === correctAnswer) {
-    score++;
-    document.getElementById('feedback').textContent = '정답입니다!';
-    document.getElementById('feedback').style.color = 'green';
+  if (selectedSubject === "스포츠 리더십" && currentType === "mc") {
+    q.choices.forEach((choice, idx) => {
+      const btn = document.createElement('button');
+      btn.textContent = `${idx + 1}. ${choice}`;
+      btn.onclick = () => {
+        if (document.getElementById('next-btn').style.display === 'none') {
+          submitAnswer(choice);
+        }
+      };
+      btn.style.display = "block";
+      btn.style.margin = "8px 0";
+      document.getElementById('choices').appendChild(btn);
+    });
+  } else if (selectedSubject === "스포츠 리더십" && currentType === "ox") {
+    ["O", "X"].forEach((ox) => {
+      const btn = document.createElement('button');
+      btn.textContent = ox;
+      btn.onclick = () => {
+        if (document.getElementById('next-btn').style.display === 'none') {
+          submitAnswer(ox);
+        }
+      };
+      btn.style.display = "inline-block";
+      btn.style.margin = "8px 12px 8px 0";
+      document.getElementById('choices').appendChild(btn);
+    });
   } else {
-    document.getElementById('feedback').textContent = `오답입니다. 정답: ${correctAnswer}`;
-    document.getElementById('feedback').style.color = 'red';
-    incorrectQuestions.push(currentQuestions[currentIndex]);
+    document.getElementById('answer-input').style.display = '';
+    document.getElementById('answer-input').value = '';
+    document.getElementById('answer-input').focus();
   }
-  document.getElementById('next-btn').style.display = '';
-  document.getElementById('answer-input').focus();
 }
 
-// 제출 버튼 클릭 시
-document.getElementById('submit-btn').onclick = () => {
-  if (document.getElementById('next-btn').style.display !== 'none') return;
-  submitAnswer();
-};
-
-// 다음 문제 버튼 클릭 시
-document.getElementById('next-btn').onclick = () => {
-  currentIndex++;
-  showQuestion();
-};
-
-// 입력창에서 엔터(PC)/이동(모바일) 누르면 제출 또는 다음 문제로 이동
+// 단답형/빈칸형 엔터키 처리
 document.getElementById('answer-input').addEventListener('keydown', function(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
     if (document.getElementById('next-btn').style.display === 'none') {
-      submitAnswer();
+      submitAnswer(document.getElementById('answer-input').value.trim());
     } else {
       document.getElementById('next-btn').click();
     }
   }
 });
+
+// 제출 버튼 (단답형/빈칸형만)
+document.getElementById('submit-btn').onclick = () => {
+  if (document.getElementById('next-btn').style.display !== 'none') return;
+  if (
+    (selectedSubject === "스포츠 리더십" && currentType === "short") ||
+    (selectedSubject === "물류")
+  ) {
+    submitAnswer(document.getElementById('answer-input').value.trim());
+  }
+};
+
+function submitAnswer(userAnswer) {
+  const q = currentQuestions[currentIndex];
+  let correct = false;
+  if (selectedSubject === "스포츠 리더십" && (currentType === "mc" || currentType === "ox")) {
+    correct = (userAnswer === q.answer);
+  } else {
+    correct = q.answer.replace(/\s/g,'').toLowerCase() === userAnswer.replace(/\s/g,'').toLowerCase();
+  }
+  if (correct) {
+    score++;
+    document.getElementById('feedback').textContent = '정답입니다!';
+    document.getElementById('feedback').style.color = 'green';
+  } else {
+    document.getElementById('feedback').textContent = `오답입니다. 정답: ${q.answer}`;
+    document.getElementById('feedback').style.color = 'red';
+    incorrectQuestions.push(q);
+  }
+  document.getElementById('next-btn').style.display = '';
+}
+
+document.getElementById('next-btn').onclick = () => {
+  currentIndex++;
+  showQuestion();
+};
 
 function showResult() {
   document.querySelector('.quiz').style.display = 'none';
@@ -245,7 +871,6 @@ function showResult() {
   }
 }
 
-// 오답 다시 풀기(랜덤)
 document.getElementById('retry-wrong-btn').onclick = () => {
   if (incorrectQuestions.length === 0) return;
   currentQuestions = shuffle([...incorrectQuestions]);
@@ -257,64 +882,8 @@ document.getElementById('retry-wrong-btn').onclick = () => {
   showQuestion();
 };
 
-// 처음부터 다시 풀기: 모드/범위 선택 모두 보이기
 document.getElementById('restart-btn').onclick = () => {
-  document.querySelector('.mode-select').style.display = '';
-  document.querySelector('.range-select').style.display = '';
+  document.querySelector('.subject-select').style.display = '';
   document.querySelector('.result').style.display = 'none';
-};
-
-// ====== 관리자 기능 ======
-const ADMIN_PASSWORD = "1234"; // 원하는 비밀번호로 변경
-
-// 관리자 버튼 클릭 시
-document.getElementById('admin-btn').onclick = () => {
-  document.getElementById('admin-login').style.display = '';
-  document.getElementById('admin-panel').style.display = 'none';
-  document.getElementById('admin-save-msg').textContent = '';
-  document.getElementById('admin-login-fail').textContent = '';
-};
-
-// 비밀번호 확인
-document.getElementById('admin-login-btn').onclick = () => {
-  const pw = document.getElementById('admin-password').value;
-  if (pw === ADMIN_PASSWORD) {
-    document.getElementById('admin-login').style.display = 'none';
-    showAdminPanel();
-  } else {
-    document.getElementById('admin-login-fail').textContent = '비밀번호가 틀렸습니다!';
-  }
-};
-
-// 관리자 패널 표시
-function showAdminPanel() {
-  document.getElementById('admin-panel').style.display = '';
-  let html = '';
-  questions.forEach((q, idx) => {
-    html += `
-      <div style="margin-bottom:10px;">
-        <label>문제 ${idx + 1}:<br>
-          <textarea style="width:95%;height:40px;" id="admin-q-${idx}">${q.question}</textarea>
-        </label><br>
-        <label>정답:<br>
-          <input style="width:95%;" type="text" id="admin-a-${idx}" value="${q.answer}">
-        </label>
-      </div>
-    `;
-  });
-  document.getElementById('admin-questions').innerHTML = html;
-}
-
-// 저장 버튼 클릭 시
-document.getElementById('admin-save-btn').onclick = () => {
-  for (let i = 0; i < questions.length; i++) {
-    const newQ = document.getElementById(`admin-q-${i}`).value;
-    const newA = document.getElementById(`admin-a-${i}`).value;
-    questions[i].question = newQ;
-    questions[i].answer = newA;
-  }
-  document.getElementById('admin-save-msg').textContent = '저장되었습니다! 새로고침 전까지 적용됩니다.';
-  setTimeout(() => {
-    document.getElementById('admin-save-msg').textContent = '';
-  }, 2000);
+  document.querySelector('.range-select').style.display = 'none';
 };

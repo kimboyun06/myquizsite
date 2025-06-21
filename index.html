@@ -2,18 +2,34 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>빈칸 문제풀이</title>
+  <title>문제풀이 통합앱</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="app">
-    <h1>빈칸 문제풀이</h1>
-    <div class="mode-select">
-      <button id="order-mode">순서대로 풀기</button>
-      <button id="random-mode">랜덤으로 풀기</button>
+    <h1>문제풀이 통합앱</h1>
+    <div class="subject-select">
+      <label>과목 선택:
+        <select id="subject-select">
+          <option value="물류">물류</option>
+          <option value="스포츠 리더십">스포츠 리더십</option>
+        </select>
+      </label>
+      <button id="subject-confirm">확인</button>
     </div>
-    <div class="range-select" style="margin:15px 0;">
+    <div class="type-select" style="display:none;">
+      <label>문제 유형 선택:
+        <select id="type-select">
+          <option value="blank">빈칸형</option>
+          <option value="mc">객관식</option>
+          <option value="ox">OX</option>
+          <option value="short">단답형</option>
+        </select>
+      </label>
+      <button id="type-confirm">시작</button>
+    </div>
+    <div class="range-select" style="display:none; margin:15px 0;">
       <label>문제 범위 지정: 
         <input type="number" id="range-start" min="1" style="width:60px;"> ~ 
         <input type="number" id="range-end" min="1" style="width:60px;">
@@ -22,7 +38,8 @@
     </div>
     <div class="quiz" style="display:none;">
       <h2 id="question"></h2>
-      <input type="text" id="answer-input" placeholder="정답을 입력하세요">
+      <div id="choices" style="margin:10px 0;"></div>
+      <input type="text" id="answer-input" style="display:none;" placeholder="정답을 입력하세요">
       <button id="submit-btn">제출</button>
       <div id="feedback"></div>
       <button id="next-btn" style="display:none;">다음 문제</button>
@@ -30,22 +47,7 @@
     <div class="result" style="display:none;">
       <h2 id="score"></h2>
       <button id="retry-wrong-btn" style="display:none;">틀린 문제 다시 풀기</button>
-      <button id="restart-btn">처음부터 다시 풀기</button>
-    </div>
-    <!-- 관리자 영역 -->
-    <div class="admin-section" style="margin-top:20px;">
-      <button id="admin-btn">관리자</button>
-      <div id="admin-login" style="display:none; margin-top:10px;">
-        <input type="password" id="admin-password" placeholder="비밀번호 입력">
-        <button id="admin-login-btn">확인</button>
-        <span id="admin-login-fail" style="color:red; margin-left:10px;"></span>
-      </div>
-      <div id="admin-panel" style="display:none; margin-top:15px;">
-        <h3>문제/정답 수정</h3>
-        <div id="admin-questions"></div>
-        <button id="admin-save-btn" style="margin-top:10px;">저장</button>
-        <span id="admin-save-msg" style="margin-left:10px; color:green;"></span>
-      </div>
+      <button id="restart-btn">처음으로</button>
     </div>
   </div>
   <script src="script.js"></script>
